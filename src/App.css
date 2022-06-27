@@ -378,3 +378,50 @@ body {
     color: #000;
     margin-top: 2px;
 }
+
+.pagination_container {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    width: max-content;
+    margin: 0 auto;
+    margin-bottom: 35px;
+    margin-top: 35px;
+}
+
+.pag_num_container {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.pag_num {
+    font-size: 30px;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 9px;
+}
+
+.pag_prev_next {
+    font-size: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 9px;
+    color: white;
+    background-color: #dd1a1a;
+}
+
+.page_active {
+    color: white;
+    background-color: #dd1a1a;
+}

@@ -36,7 +36,6 @@ const PokeCard = ({url}) => {
 
     }, [])
 
-    console.log(pokemon)
 
   return (
     
