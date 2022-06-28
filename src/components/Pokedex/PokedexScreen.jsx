@@ -1,14 +1,15 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Aside from './Aside'
 import PokeCard from './PokeCard'
 import Pagination from './Pagination'
+import usePokeApi from '../../hooks/usePokeApi'
 
 
 const PokedexScreen = () => {
 
-   const [pokemons, setPokemons] = useState()
    const [currentPage, setCurrentPage] = useState(1)
+
+   const pokemons = usePokeApi()
 
    let arrayPokemons = []
    const pokemonPerPage = 12
@@ -34,15 +35,9 @@ const PokedexScreen = () => {
     }
    }
 
+   const pokemonURL = arrayPokemons?.map(pokemon => pokemon.url)
+   
 
-   useEffect(() => {
-    const URL_POKEMONS = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1154'
-
-    axios.get(URL_POKEMONS)
-    .then(res => setPokemons(res.data.results))
-    .catch(err => console.log(err))
-
-   }, [])
 
   return (
     <div>
@@ -56,6 +51,7 @@ const PokedexScreen = () => {
       <div className='card_container'>
         {
             arrayPokemons?.map(pokemon => (
+                
                 <PokeCard 
                 key={pokemon.url}
                 url={pokemon.url}

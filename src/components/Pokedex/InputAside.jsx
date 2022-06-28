@@ -31,7 +31,7 @@ const InputAside = () => {
             </button>
         </div>
         <select className="select_type">
-            <option value="All pokemons" selected="" {...register('pokemonType')}>All pokemons</option>
+            <option value="All pokemons" selected='' {...register('pokemonType')}>All pokemons</option>
             <option value="normal" {...register('pokemonType')}>normal</option>
             <option value="fighting" {...register('pokemonType')}>fighting</option>
             <option value="flying" {...register('pokemonType')}>flying</option>
