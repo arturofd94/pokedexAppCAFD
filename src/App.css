@@ -397,24 +397,24 @@ body {
 }
 
 .pag_num {
-    font-size: 30px;
+    font-size: 20px;
     color: #000;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
+    width: 25px;
     aspect-ratio: 1;
     border-radius: 9px;
 }
 
 .pag_prev_next {
-    font-size: 30px;
+    font-size: 20px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
+    width: 35px;
     aspect-ratio: 1;
     border-radius: 9px;
     color: white;
@@ -424,4 +424,39 @@ body {
 .page_active {
     color: white;
     background-color: #dd1a1a;
+}
+
+.form_container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_search_container {
+    display: flex;
+}
+
+.form_search, .select_type {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 8px 2px #0002;
+}
+
+.form_search {
+    width: 70%;
+}
+
+.search_btn {
+    font-weight: 100;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #dd1a1a;
+    cursor: pointer;
+    box-shadow: 5px 5px 8px 2px #0002;
 }

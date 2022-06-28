@@ -1,9 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import Aside from './Aside'
 import PokeCard from './PokeCard'
-import Header from '../Header/Header'
 import Pagination from './Pagination'
 
 
@@ -48,7 +46,6 @@ const PokedexScreen = () => {
 
   return (
     <div>
-      <Header />
       <Aside/>
       <Pagination 
         arrayPages={arrayPages}

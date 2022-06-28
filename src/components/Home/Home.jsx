@@ -5,7 +5,6 @@ import InputHome from './InputHome'
 const Home = () => {
 
     const images = getImage()
-    console.log(images)
 
   return (
     <div className='Home_container'>
