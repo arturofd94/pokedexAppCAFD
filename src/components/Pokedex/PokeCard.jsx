@@ -7,6 +7,7 @@ import usePokeDefense from '../../hooks/usePokeDefense'
 import usePokeSpecialAtt from '../../hooks/usePokeSpecialAtt'
 import usePokeSpecialDef from '../../hooks/usePokeSpecialDef'
 import usePokeSpeed from '../../hooks/usePokeSpeed'
+import { useNavigate } from 'react-router-dom'
 
 
 const PokeCard = ({url}) => {
@@ -20,10 +21,14 @@ const PokeCard = ({url}) => {
   const specialDefense = usePokeSpecialDef(url)
   const speed = usePokeSpeed(url)
 
+  const navigate = useNavigate()
+
+  const navigateTo = id => navigate(`/pokedex/${id}`)
+
 
   return (
     
-      <article className={`card ${type}_border`}>
+      <article onClick={() => navigateTo(pokemon.id)} className={`card ${type}_border`}>
         <header className={`card_header ${type}`}>
         <img className='card_pokemon_img' src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
         </header>
