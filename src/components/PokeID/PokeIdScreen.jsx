@@ -11,8 +11,6 @@ const PokeIdScreen = () => {
 
   const { id } = useParams()
 
-  const nextPokemon = id => id + 1
-
   useEffect(() => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}/`
 

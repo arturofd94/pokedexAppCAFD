@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const InputAside = ({setPokemons, pokemons}) => {
 
@@ -7,14 +8,22 @@ const InputAside = ({setPokemons, pokemons}) => {
 
     const [value, setValue] = useState('')
 
-    const onChange = e => {
-        setValue(e.target.value)
-    }
+    const navigate = useNavigate()
 
+    
     useEffect(() => {
         if(typeFilter !== ''){
         axios.get(`https://pokeapi.co/api/v2/type/${typeFilter}`)
-            .then(res => setPokemons(res.data))
+            .then(res => {
+                setPokemons(res.data)
+            })
+    } else {
+        const URL_POKEMONS = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1154'
+        axios.get(URL_POKEMONS)
+        .then(res => {
+            setPokemons(res.data.results)
+            })
+        .catch(err => console.log(err))
     }
     },[typeFilter])
 
@@ -22,35 +31,46 @@ const InputAside = ({setPokemons, pokemons}) => {
         setTypeFilter(e.target.value)
     }
 
-    const onSearch = searchTerm => {
-        console.log(searchTerm)
+    const onSearch =  e  => {
+        navigate(`/pokedex/${e.target.textContent}`)
     }
 
+    const onChange = e => {
+        setValue(e.target.value)
+    }
+
+       
 
   return (
     <form className='form_container'>
         <div className='form_search_container'>
-            <input 
-            className='form_search' 
-            placeholder='Insert Pokemon name' 
-            type="text"
-            value={value}
-            onChange={onChange}
-             />
-            <button 
-            className='search_btn'
-            onClick={() => onSearch(value)}
-            >
-                Search
-            </button>
-            <div className='dropdown'>
-                {
-                   pokemons?.name?.map(pokemon => {
-                    <div className='dropdown_row'>
-                        {pokemon}
-                    </div>
-                   })
-                }
+            <div className='search_inner'>
+                <input 
+                className='form_search' 
+                placeholder='Insert Pokemon name' 
+                type="text"
+                value={value}
+                onChange={onChange}
+                 />
+                <div className='dropdown'>
+                    {
+                        pokemons?.filter(pokemon => {
+                            const searchTerm = value.toLowerCase()
+                            const pokeName = pokemon?.pokemon !== undefined ? pokemon?.pokemon.name.toLowerCase() : pokemon.name.toLowerCase()
+                        
+
+                        return searchTerm && pokeName.startsWith(searchTerm) && pokeName !== searchTerm
+                        }).slice(0,4)
+                        .map(pokemon => 
+                            <div className='dropdown_row'
+                            onClick={onSearch}
+                            key={pokemons?.pokemon !== undefined ? pokemon.pokemon.url : pokemon.url}
+                            >
+                                {pokemons?.pokemon !== undefined ? pokemon.pokemon.name : pokemon.name}
+                            </div>
+                            )
+                    }
+                </div>
             </div>
         </div>
         <select className="select_type" onChange={handleType}>

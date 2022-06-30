@@ -449,15 +449,19 @@ body {
     display: flex;
 }
 
-.form_search, .select_type {
+.form_search {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     box-shadow: 5px 5px 8px 2px #0002;
+    width: 250px;
 }
 
-.form_search {
-    width: 70%;
+.select_type {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 8px 2px #0002;
 }
 
 .search_btn {
@@ -469,6 +473,35 @@ body {
     background-color: #dd1a1a;
     cursor: pointer;
     box-shadow: 5px 5px 8px 2px #0002;
+}
+
+.dropdown {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    position: absolute;
+    top: 214px;
+    width: 135px;
+}
+
+.dropdown:empty {
+    border: none;
+}
+
+.dropdown_row {
+    cursor: pointer;
+    text-align: start;
+    margin: 2px 0;
+}
+
+.dropdown_row:hover {
+    background-color: rgba(249, 4, 4, 0.46);
+}
+
+.search_inner {
+    display: flex;
+    flex-direction: column;
 }
 
 .poke_id_container {
