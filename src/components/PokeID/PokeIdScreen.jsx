@@ -8,6 +8,7 @@ const PokeIdScreen = () => {
   const [pokemonId, setPokemonId] = useState()
   const [pokeImg, setPokeImg] = useState()
   const [type, setType] = useState()
+  const [indexInGame, setIndexInGame] = useState()
 
   const { id } = useParams()
 
@@ -19,6 +20,7 @@ const PokeIdScreen = () => {
       setPokemonId(res.data)
       setPokeImg(res.data.sprites.other['official-artwork'].front_default)
       setType(res.data.types[0].type.name)
+      setIndexInGame(res.data.id)
     })
     .catch(err => console.log(err))
 
@@ -36,7 +38,7 @@ const PokeIdScreen = () => {
       </header>
       <div className='body_card'>
         <section className='poke_gral'>
-          <div className='poke_id'>{`#${id}`}</div>
+          <div className='poke_id'>{`#${indexInGame}`}</div>
           <hr className='hr_card' />
         <h1 className='name_poke'>{pokemonId?.name}</h1>
         <ul className='poke_stats'>
