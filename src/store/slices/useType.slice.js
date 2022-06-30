@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const pokemonTypeSlice = createSlice({
     name: 'pokemonType',
-    initialState: 'All pokemons',
+    initialState: '',
     reducers: {
         setTypeGlobal: (state, action) => action.payload
 

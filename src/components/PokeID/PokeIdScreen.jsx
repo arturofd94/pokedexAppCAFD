@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import PokeType from './PokeType'
 
 const PokeIdScreen = () => {
 
@@ -25,8 +26,6 @@ const PokeIdScreen = () => {
 
   },[id])
 
-  console.log(pokemonId)
-
   return (
     <div className='poke_id_container'>
       <Link className='poke_return' to='/pokedex'>&#60;</Link>
@@ -50,7 +49,14 @@ const PokeIdScreen = () => {
           <li className='stats_id'><span className='span_stats_id'>Speed</span>{pokemonId?.stats[5].base_stat}</li>
         </ul>
         <div className='type_flex'><p>Type</p></div>
-            <div className={`type type-${type}`}>{type}</div>
+        {
+            pokemonId?.types.map(type => (
+              <PokeType 
+              key={type.type.name}
+              type={type.type.name}
+              />
+            ))
+        }
         </section>
       </div>
     </article>

@@ -240,6 +240,10 @@ body {
     border: 7px solid rgba(255,177,226,.8);
 }
 
+.flying_border {
+    border: #93f2efc3;
+}
+
 .card_header {
     height: 120px;
     width: 100%;
@@ -317,6 +321,12 @@ body {
 .fairy {
     background: linear-gradient(0deg,rgba(255,249,253,.9906556372549019) 0%,rgba(255,177,226,1) 100%);
 }
+
+.flying {
+    background: linear-gradient(0deg,rgba(243,254,255,1) 0%,#93f2efc3 100%);
+}
+
+
 
 .card_pokemon_img {
     width: 150px;
@@ -589,6 +599,7 @@ body {
 .type {
     text-transform: capitalize;
     padding: 5px 20px;
+    margin-bottom: 10px;
     font-weight: 600;
     border:1px solid transparent ;
 }
@@ -675,5 +686,10 @@ body {
 
 .type-fairy {
     background-color: rgba(255,177,226,.8);
+    color: #fff;
+}
+
+.type-flying {
+    background-color: #93f2efc3;
     color: #fff;
 }

@@ -35,7 +35,7 @@ const PokeCard = ({url}) => {
         <div className='card_body'>
           <h2 className='card_name'>{pokemon?.name}</h2>
           <p className='pokemon_type'>
-            {`${type}` }
+            {pokemon?.types.map(type => type.type.name).join(' / ')}
           </p>
           <p className='pokemon_Text'>Type</p>
           <hr className='set_hr' />

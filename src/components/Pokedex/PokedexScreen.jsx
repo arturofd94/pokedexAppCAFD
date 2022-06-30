@@ -1,15 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Aside from './Aside'
 import PokeCard from './PokeCard'
 import Pagination from './Pagination'
-import usePokeApi from '../../hooks/usePokeApi'
+import axios from 'axios'
 
 
 const PokedexScreen = () => {
 
    const [currentPage, setCurrentPage] = useState(1)
 
-   const pokemons = usePokeApi()
+   const [pokemons, setPokemons] = useState()
+
+    useEffect(() => {
+        const URL_POKEMONS = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1154'
+        axios.get(URL_POKEMONS)
+        .then(res => setPokemons(res.data.results))
+        .catch(err => console.log(err))
+    
+        
+    }, [])
 
    let arrayPokemons = []
    const pokemonPerPage = 12
@@ -18,7 +27,11 @@ const PokedexScreen = () => {
       arrayPokemons = [...pokemons]
    } else {
     const lastPokemon = currentPage * pokemonPerPage 
-    arrayPokemons = pokemons?.slice(lastPokemon - pokemonPerPage, lastPokemon)
+    if (pokemons?.pokemon !== undefined){
+      arrayPokemons = pokemons?.pokemon.slice(lastPokemon - pokemonPerPage, lastPokemon)
+    }
+      else {
+        arrayPokemons = pokemons?.slice(lastPokemon - pokemonPerPage, lastPokemon)}
    }
 
    let arrayPages = []
@@ -41,7 +54,7 @@ const PokedexScreen = () => {
 
   return (
     <div>
-      <Aside/>
+      <Aside setPokemons={setPokemons}/>
       <Pagination 
         arrayPages={arrayPages}
         currentPage={currentPage}
@@ -53,8 +66,8 @@ const PokedexScreen = () => {
             arrayPokemons?.map(pokemon => (
                 
                 <PokeCard 
-                key={pokemon.url}
-                url={pokemon.url}
+                key={pokemons?.pokemon !== undefined ? pokemon.pokemon.url : pokemon.url}
+                url={pokemons?.pokemon !== undefined ? pokemon.pokemon.url : pokemon.url}
                 />
             ))
         }
