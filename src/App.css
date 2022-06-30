@@ -241,7 +241,7 @@ body {
 }
 
 .flying_border {
-    border: #93f2efc3;
+    border: 7px solid #93f2efc3;
 }
 
 .card_header {

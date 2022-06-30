@@ -1,14 +1,15 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
-import { setTypeGlobal } from '../../store/slices/useType.slice'
 
-const InputAside = ({setPokemons}) => {
-
-    const { handleSubmit, reset, register } = useForm()
+const InputAside = ({setPokemons, pokemons}) => {
 
     const [typeFilter, setTypeFilter] = useState('')
+
+    const [value, setValue] = useState('')
+
+    const onChange = e => {
+        setValue(e.target.value)
+    }
 
     useEffect(() => {
         if(typeFilter !== ''){
@@ -17,30 +18,40 @@ const InputAside = ({setPokemons}) => {
     }
     },[typeFilter])
 
-    const dispatch = useDispatch()
-
-
-    const submit = data => {
-        dispatch()
-        reset({
-            pokemonType: ''
-        })
-    }
-
     const handleType = e => {
         setTypeFilter(e.target.value)
     }
 
+    const onSearch = searchTerm => {
+        console.log(searchTerm)
+    }
+
 
   return (
-    <form className='form_container' onSubmit={handleSubmit(submit)}>
+    <form className='form_container'>
         <div className='form_search_container'>
             <input 
-            className='form_search' placeholder='Insert Pokemon name' type="text"
+            className='form_search' 
+            placeholder='Insert Pokemon name' 
+            type="text"
+            value={value}
+            onChange={onChange}
              />
-            <button className='search_btn'>
+            <button 
+            className='search_btn'
+            onClick={() => onSearch(value)}
+            >
                 Search
             </button>
+            <div className='dropdown'>
+                {
+                   pokemons?.name?.map(pokemon => {
+                    <div className='dropdown_row'>
+                        {pokemon}
+                    </div>
+                   })
+                }
+            </div>
         </div>
         <select className="select_type" onChange={handleType}>
             <option value="" >All pokemons</option>

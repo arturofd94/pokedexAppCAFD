@@ -22,7 +22,7 @@ const PokedexScreen = () => {
 
    let arrayPokemons = []
    const pokemonPerPage = 12
-
+    
    if ( pokemons?.length < pokemonPerPage ){
       arrayPokemons = [...pokemons]
    } else {
@@ -35,7 +35,14 @@ const PokedexScreen = () => {
    }
 
    let arrayPages = []
-   let qtyPages = Math.ceil(pokemons?.length / pokemonPerPage)
+   let qtyPages =  Math.ceil(pokemons?.length / pokemonPerPage)
+   if (pokemons?.pokemon !== undefined) {
+    qtyPages =  Math.ceil(pokemons?.pokemon.length / pokemonPerPage)
+   } else {
+    qtyPages =  Math.ceil(pokemons?.length / pokemonPerPage)
+   }
+   
+   
    const pagesPerBlock = 5
    let currentBlock = Math.ceil(currentPage / pagesPerBlock)
    if( currentBlock * pagesPerBlock >= qtyPages ){
@@ -48,13 +55,12 @@ const PokedexScreen = () => {
     }
    }
 
-   const pokemonURL = arrayPokemons?.map(pokemon => pokemon.url)
-   
-
-
   return (
     <div>
-      <Aside setPokemons={setPokemons}/>
+      <Aside 
+      setPokemons={setPokemons}
+      pokemons={pokemons?.pokemon !== undefined ? pokemons.pokemon : pokemons}
+      />
       <Pagination 
         arrayPages={arrayPages}
         currentPage={currentPage}

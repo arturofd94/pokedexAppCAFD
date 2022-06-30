@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import InputAside from './InputAside'
 
-const Aside = ({setPokemons}) => {
+const Aside = ({setPokemons, pokemons}) => {
 
     const userName = useSelector( state => state.userName)
 
@@ -12,7 +12,10 @@ const Aside = ({setPokemons}) => {
             <span className='aside_span'>Welcome {userName}</span> 
         , let's prepare you for battle!!
         </h1>
-        <InputAside setPokemons={setPokemons}/>
+        <InputAside 
+        setPokemons={setPokemons} 
+        pokemons={pokemons}
+        />
     </aside>
   )
 }
