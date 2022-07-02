@@ -38,7 +38,7 @@ const PokeIdScreen = () => {
       </header>
       <div className='body_card'>
         <section className='poke_gral'>
-          <div className='poke_id'>{`#${indexInGame}`}</div>
+          {/* <div className='poke_id'>{`#${indexInGame}`}</div> */}
           <hr className='hr_card' />
         <h1 className='name_poke'>{pokemonId?.name}</h1>
         <ul className='poke_stats'>
