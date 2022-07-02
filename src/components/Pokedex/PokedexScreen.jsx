@@ -16,8 +16,6 @@ const PokedexScreen = () => {
         axios.get(URL_POKEMONS)
         .then(res => setPokemons(res.data.results))
         .catch(err => console.log(err))
-    
-        
     }, [])
 
    let arrayPokemons = []

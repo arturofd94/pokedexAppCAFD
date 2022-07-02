@@ -168,6 +168,10 @@ body {
     background-color: #fff;
 }
 
+.card:hover {
+    transform: scale(1.1);
+}
+
 .grass_border {
     border:  7px solid rgb(58 178 0 / 80%);
 }
