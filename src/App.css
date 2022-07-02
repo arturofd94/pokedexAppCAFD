@@ -112,6 +112,8 @@ body {
     top: 72.5px;
 }
 
+
+
 .circle {
     width: 55px;
     aspect-ratio: 1;
@@ -562,7 +564,7 @@ body {
     flex-direction: column;
     border: 1px solid gray;
     position: absolute;
-    top: 214px;
+    top: 230px;
     width: 135px;
 }
 
@@ -613,7 +615,7 @@ body {
 
 .poke_id_info {
     width: min(800px,100%);
-    margin-top: 240px;
+    margin-top: 160px;
     box-shadow: 0 2px 5px #0c0c0c34;
     border-radius: 10px;
 }

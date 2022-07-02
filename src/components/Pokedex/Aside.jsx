@@ -10,7 +10,7 @@ const Aside = ({setPokemons, pokemons}) => {
     <aside className='aside_container'>
         <h1 className='aside_title'>
             <span className='aside_span'>Welcome {userName}</span> 
-        , let's prepare you for battle!!
+              , let's prepare you for battle!!
         </h1>
         <InputAside 
         setPokemons={setPokemons} 
