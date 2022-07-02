@@ -1,25 +1,40 @@
-import React from 'react' 
-import usePokemonUrl from '../../hooks/usePokemonUrl'
-import usePokeType from '../../hooks/usePokeType'
-import usePokeHp from '../../hooks/usePokeHp'
-import usePokeAttack from '../../hooks/usePokeAttack'
-import usePokeDefense from '../../hooks/usePokeDefense'
-import usePokeSpecialAtt from '../../hooks/usePokeSpecialAtt'
-import usePokeSpecialDef from '../../hooks/usePokeSpecialDef'
-import usePokeSpeed from '../../hooks/usePokeSpeed'
+import React, { useEffect, useState } from 'react' 
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 
 const PokeCard = ({url}) => {
 
-  const pokemon = usePokemonUrl(url)
-  const type = usePokeType(url)
-  const hp = usePokeHp(url)
-  const attack = usePokeAttack(url)
-  const defense = usePokeDefense(url)
-  const specialAttack = usePokeSpecialAtt(url)
-  const specialDefense = usePokeSpecialDef(url)
-  const speed = usePokeSpeed(url)
+
+  const [loading, setLoading] = useState(true)
+  const [pokemon, setPokemon] = useState()
+  const [type, setType] = useState()
+  const [hp, setHp] = useState()
+  const [attack, setAttack] = useState()
+  const [defense, setDefense] = useState()
+  const [specialAttack, setSpecialAttack] = useState()
+  const [specialDefense, setSpecialDefense] = useState()
+  const [speed, setSpeed] = useState()
+
+
+    useEffect(() => {
+        
+        axios.get(url)
+        .then(res => {
+          setPokemon(res.data)
+          setType(res.data.types[0].type.name)
+          setHp(res.data.stats[0].base_stat)
+          setAttack(res.data.stats[1].base_stat)
+          setDefense(res.data.stats[2].base_stat)
+          setSpecialAttack(res.data.stats[3].base_stat)
+          setSpecialDefense(res.data.stats[4].base_stat)
+          setSpeed(res.data.stats[5].base_stat)
+        })
+        .catch(err => console.log(err))
+        .finally(setLoading(!loading))
+    
+        
+    }, [])
 
   const navigate = useNavigate()
 
@@ -28,7 +43,7 @@ const PokeCard = ({url}) => {
 
   return (
     
-      <article onClick={() => navigateTo(pokemon.id)} className={`card ${type}_border`}>
+      <article onClick={() => navigateTo(pokemon.id)} className='card'>
         <header className={`card_header ${type}`}>
         <img className='card_pokemon_img' src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
         </header>
@@ -59,6 +74,19 @@ const PokeCard = ({url}) => {
             <span className='stat_num'>{speed}</span>
             </li>
           </ul>
+        </div>
+        <div className='loader'>
+          <div className={`loader_up ${loading ? '' : 'animationOn'}`}>
+              <div className='loader_red'></div>
+              <div className='loader_black'>
+                <div className='loader_btn'></div>
+              </div>
+          </div>
+          <div className={`loader_down ${loading ? '' : 'animationOn'}`}>
+              <div className='loader_black'></div>
+              <div className='loader_red'></div>
+          </div>
+              
         </div>
       </article>
     
