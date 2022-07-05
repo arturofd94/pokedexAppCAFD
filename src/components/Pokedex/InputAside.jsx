@@ -56,17 +56,17 @@ const InputAside = ({setPokemons, pokemons}) => {
                     {
                         pokemons?.filter(pokemon => {
                             const searchTerm = value.toLowerCase()
-                            const pokeName = pokemon?.pokemon !== undefined ? pokemon?.pokemon.name.toLowerCase() : pokemon.name.toLowerCase()
-                        
-
-                        return searchTerm && pokeName.startsWith(searchTerm) && pokeName !== searchTerm
-                        }).slice(0,4)
+                            const pokeName = pokemon.pokemon !== undefined ? pokemon?.pokemon.name.toLowerCase() : pokemon.name.toLowerCase()
+                            if(searchTerm !== ''){
+                                return pokeName.startsWith(searchTerm) && pokeName
+                            }
+                        }).slice(0, 4)
                         .map(pokemon => 
                             <div className='dropdown_row'
                             onClick={onSearch}
-                            key={pokemons?.pokemon !== undefined ? pokemon.pokemon.url : pokemon.url}
+                            key={pokemon?.pokemon !== undefined ? pokemon.pokemon.url : pokemon.url}
                             >
-                                {pokemons?.pokemon !== undefined ? pokemon.pokemon.name : pokemon.name}
+                                {pokemon?.pokemon !== undefined ? pokemon.pokemon.name : pokemon.name}
                             </div>
                             )
                     }
