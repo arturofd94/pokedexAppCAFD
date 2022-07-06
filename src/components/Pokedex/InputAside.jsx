@@ -60,7 +60,7 @@ const InputAside = ({setPokemons, pokemons}) => {
                             if(searchTerm !== ''){
                                 return pokeName.startsWith(searchTerm) && pokeName
                             }
-                        }).slice(0, 4)
+                        })
                         .map(pokemon => 
                             <div className='dropdown_row'
                             onClick={onSearch}

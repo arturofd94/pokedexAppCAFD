@@ -559,18 +559,30 @@ body {
 }
 
 .dropdown {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
-    border: 1px solid gray;
+    border: 1px solid rgb(254, 137, 137);
     position: absolute;
     top: 230px;
-    width: 135px;
+    width: 160px;
+    max-height: 94px;
+    overflow: auto;
+    border-radius: 8px;
 }
 
 .dropdown:empty {
     border: none;
 }
+
+.dropdown::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .dropdown::-webkit-scrollbar-thumb {
+    background-color: rgba(45,161,253,1);
+    border-radius: 4px;
+  }
 
 .dropdown_row {
     cursor: pointer;
